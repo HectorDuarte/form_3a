@@ -171,6 +171,15 @@ public class form extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void clean(){
+        tf_id.setText("");
+        tf_name.setText("");
+        tf_lastname.setText("");
+        tf_second_lastname.setText("");
+        tf_phone.setText("");
+        tf_age.setText("");
+    }
+    
     private void create(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create
         // TODO add your handling code here:
         Map datos = new HashMap();
@@ -180,12 +189,14 @@ public class form extends javax.swing.JFrame {
         datos.put(campos[3], tf_phone.getText());
         datos.put(campos[4], tf_age.getText());
         bd.crear(datos, configuracion, tabla);
+        clean();
     }//GEN-LAST:event_create
 
     private void delete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete
         // TODO add your handling code here:
         int id = Integer.parseInt(tf_id.getText());
         bd.borrar(id, configuracion, tabla);
+        clean();
     }//GEN-LAST:event_delete
 
     private void read(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_read
@@ -229,6 +240,7 @@ public class form extends javax.swing.JFrame {
         datos.put(campos[4],tf_age.getText());
         
         bd.actualizar(id, datos, configuracion, tabla);
+        clean();
     }//GEN-LAST:event_update
 
     /**
