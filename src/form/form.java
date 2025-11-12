@@ -180,27 +180,7 @@ public class form extends javax.swing.JFrame {
         tf_age.setText("");
     }
     
-    private void create(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create
-        // TODO add your handling code here:
-        Map datos = new HashMap();
-        datos.put(campos[0], tf_name.getText());
-        datos.put(campos[1], tf_lastname.getText());
-        datos.put(campos[2], tf_second_lastname.getText());
-        datos.put(campos[3], tf_phone.getText());
-        datos.put(campos[4], tf_age.getText());
-        bd.crear(datos, configuracion, tabla);
-        clean();
-    }//GEN-LAST:event_create
-
-    private void delete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete
-        // TODO add your handling code here:
-        int id = Integer.parseInt(tf_id.getText());
-        bd.borrar(id, configuracion, tabla);
-        clean();
-    }//GEN-LAST:event_delete
-
-    private void read(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_read
-        // TODO add your handling code here:
+    private void table_update(){
         List<Map<String, Object>> datos = bd.leer(configuracion, tabla);
         DefaultTableModel model = (DefaultTableModel) tbl_datos.getModel();
         model.setRowCount(0);
@@ -214,6 +194,32 @@ public class form extends javax.swing.JFrame {
                 fila.get("edad")
             });
         }
+    }
+    
+    private void create(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create
+        // TODO add your handling code here:
+        Map datos = new HashMap();
+        datos.put(campos[0], tf_name.getText());
+        datos.put(campos[1], tf_lastname.getText());
+        datos.put(campos[2], tf_second_lastname.getText());
+        datos.put(campos[3], tf_phone.getText());
+        datos.put(campos[4], tf_age.getText());
+        bd.crear(datos, configuracion, tabla);
+        clean();
+        table_update();
+    }//GEN-LAST:event_create
+
+    private void delete(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete
+        // TODO add your handling code here:
+        int id = Integer.parseInt(tf_id.getText());
+        bd.borrar(id, configuracion, tabla);
+        clean();
+        table_update();
+    }//GEN-LAST:event_delete
+
+    private void read(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_read
+        // TODO add your handling code here:
+        table_update();
     }//GEN-LAST:event_read
 
     private void get_data(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_get_data
@@ -241,6 +247,7 @@ public class form extends javax.swing.JFrame {
         
         bd.actualizar(id, datos, configuracion, tabla);
         clean();
+        table_update();
     }//GEN-LAST:event_update
 
     /**
